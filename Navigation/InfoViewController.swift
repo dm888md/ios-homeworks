@@ -14,8 +14,6 @@ class InfoViewController: UIViewController {
         view.backgroundColor = .systemTeal
 
         
-
-        lazy var alertButton: UIButton = {
             let alertButton = UIButton ()
             alertButton.backgroundColor = .blue
             alertButton.layer.cornerRadius = 5
@@ -25,8 +23,7 @@ class InfoViewController: UIViewController {
             alertButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             //            button.translatesAutoresizingMaskIntoConstraints = false
             alertButton.frame = CGRect(x: 50, y: 200, width: 300, height: 50)
-            return alertButton
-        }()
+
         view.addSubview(alertButton)
     }
 

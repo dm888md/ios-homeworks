@@ -19,46 +19,38 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 // =============== Создали ленту пользователя
 
     let feedViewController = FeedViewController()
+ 
     let feedNavigationController = UINavigationController(rootViewController: feedViewController)
         feedNavigationController.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "doc.richtext"), tag: 0)
+
         feedViewController.title = "Лента"
         feedViewController.view.backgroundColor = .systemYellow
 
 // =============== Создали профиль пользователя
 
     let profileViewController = ProfileViewController()
+  
     let profileNavigationController = UINavigationController(rootViewController: profileViewController)
         profileNavigationController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 1)
+
         profileViewController.title = "Профиль"
         profileViewController.view.backgroundColor = .systemOrange
 
 // =============== Создали tabBarController и поместили в него 2 контроллера - лента и профиль
-    let tabBarController = UITabBarController()
+    var tabBarController = UITabBarController()
 
-//        feedViewController.tabBarItem = UITabBarItem(title: "Лента", image:UIImage(named: "feedImage"), tag: 0)
-//        profileViewController.tabBarItem = UITabBarItem(title: "Профиль", image:UIImage(named: "profileImage"), tag: 1)
-
-
-    let controllers = [feedViewController, profileViewController]
-//        tabBarController.viewControllers = [feedViewController, profileViewController]
+//Это правильный код!
+        let controllers = [feedViewController, profileViewController]
+      
 
         tabBarController.viewControllers = controllers.map {
-            UINavigationController(rootViewController: $0)
-        }
-//
-        tabBarController.selectedIndex = 0
+                UINavigationController(rootViewController: $0)
+            }
 
 
         UITabBar.appearance().backgroundColor = .lightGray
         UITabBar.appearance().tintColor = .black
-
-
-
-        // Создали PostViewController
-
-//        let postViewController = PostViewController()
-        
-
+        UITabBar.appearance().unselectedItemTintColor = .black
 
 
 // Настроили окно при запуске программыы
@@ -66,9 +58,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
         self.window = window
-
-
-
 
     }
 

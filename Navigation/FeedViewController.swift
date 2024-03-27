@@ -15,7 +15,7 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
 
-        lazy var button: UIButton = {
+/*               lazy var button: UIButton = {
             let button = UIButton ()
             button.backgroundColor = .blue
             button.layer.cornerRadius = 5
@@ -27,6 +27,20 @@ class FeedViewController: UIViewController {
             button.frame = CGRect(x: 50, y: 200, width: 300, height: 50)
             return button
         }()
+
+*/
+
+
+        let button = UIButton ()
+        button.backgroundColor = .blue
+        button.layer.cornerRadius = 5
+        button.setTitle("Новости", for: .normal)
+        button.setTitleColor(.lightGray, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        button.frame = CGRect(x: 50, y: 200, width: 300, height: 50)
+
+
 
         //        func setupButton () {
         //            button.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -100).isActive = true
@@ -43,6 +57,5 @@ class FeedViewController: UIViewController {
         postViewController.titlePost = post.title
 
         self.navigationController?.pushViewController(postViewController, animated: true)
-//        self.navigationController?.present(postViewController, animated: true)
     }
 }
