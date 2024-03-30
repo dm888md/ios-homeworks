@@ -13,7 +13,7 @@ class PostViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .cyan
+        self.view.backgroundColor = .red
         self.title = titlePost
 
 // Добавили кнопку на панель

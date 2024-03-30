@@ -13,7 +13,7 @@ class FeedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .green
 
 /*               lazy var button: UIButton = {
             let button = UIButton ()
