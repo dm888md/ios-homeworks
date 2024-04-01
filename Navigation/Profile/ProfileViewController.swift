@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileViewController_new: UIViewController {
+class ProfileViewController: UIViewController {
 
     var profileHeaderView = ProfileHeaderView ()
 

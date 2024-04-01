@@ -8,20 +8,18 @@
 import UIKit
 class ProfileHeaderView: UIView {
 
-    var labelFIO = UILabel(
-        frame:
-            CGRect(
-            x: 10,
-            y: 10,
-            width: 50,
-            height: 10
-            )
-    )
 
-    func sss () {
-        self.labelFIO.backgroundColor = .red
-        return self.addSubview(labelFIO)
-    }
+    let fullNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.textColor = .black
+        label.text = "Dog Name"
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
+    }()
+
 }
 
 

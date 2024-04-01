@@ -23,9 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let feedNavigationController = UINavigationController(rootViewController: feedViewController)
         feedNavigationController.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "doc.richtext"), tag: 0)
 
-        feedViewController.title = "Лента"
-        feedViewController.view.backgroundColor = .systemYellow
-
 // =============== Создали профиль пользователя
 
     let profileViewController = ProfileViewController()
@@ -33,25 +30,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let profileNavigationController = UINavigationController(rootViewController: profileViewController)
         profileNavigationController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 1)
 
-        profileViewController.title = "Профиль"
-        profileViewController.view.backgroundColor = .systemOrange
 
 // =============== Создали tabBarController и поместили в него 2 контроллера - лента и профиль
-    var tabBarController = UITabBarController()
+        let tabBarController = UITabBarController()
 
 //Это правильный код!
-        let controllers = [feedViewController, profileViewController]
-      
-
-        tabBarController.viewControllers = controllers.map {
-                UINavigationController(rootViewController: $0)
-            }
+       tabBarController.viewControllers = [feedNavigationController, profileNavigationController]
 
 
         UITabBar.appearance().backgroundColor = .lightGray
-        UITabBar.appearance().tintColor = .black
-        UITabBar.appearance().unselectedItemTintColor = .black
-
 
 // Настроили окно при запуске программыы
 
