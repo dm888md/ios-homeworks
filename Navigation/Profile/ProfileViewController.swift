@@ -14,22 +14,27 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
  
-////начал делать второе задание
-//        view.backgroundColor = .lightGray
-//
-//        profileHeaderView = ProfileHeaderView ()
-//        profileHeaderView.backgroundColor = .blue
-//        view.addSubview(profileHeaderView)
-//    }
-//
-//    override func viewWillLayoutSubviews () {
-//        super.viewWillLayoutSubviews ()
-//        profileHeaderView.frame = CGRect(
-//            x: 0,
-//            y: 0,
-//            width: view.frame.size.width,
-//            height: view.frame.size.height
-//        )
-            }
+//начал делать второе задание
+        view.backgroundColor = .lightGray
+
+        profileHeaderView = ProfileHeaderView ()
+
+        view.addSubview(profileHeaderView)
+        self.profileHeaderView.addSubview(profileHeaderView.fullNameLabel)
+    }
+
+
+    override func viewWillLayoutSubviews () {
+        super.viewWillLayoutSubviews ()
+        profileHeaderView.frame = CGRect(
+            x: 0,
+            y: 0,
+            width: view.frame.size.width,
+            height: view.frame.size.height)
+
+
+    }
+
+
 }
 
