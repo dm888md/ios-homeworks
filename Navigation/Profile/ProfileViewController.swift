@@ -13,16 +13,27 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
- 
-//начал делать второе задание
+
+        //начал делать второе задание
         view.backgroundColor = .lightGray
 
         profileHeaderView = ProfileHeaderView ()
 
         view.addSubview(profileHeaderView)
         self.profileHeaderView.addSubview(profileHeaderView.fullNameLabel)
-    }
+        self.profileHeaderView.addSubview(profileHeaderView.statusLabel)
+        self.profileHeaderView.addSubview(profileHeaderView.myButton)
 
+
+//        let ddd = profileHeaderView.fullNameLabel.topAnchor.constraint( equalTo: view.topAnchor, constant: 160)
+
+        let fullNameLabelTopAnchor = profileHeaderView.fullNameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 27)
+
+        let fullNameLabelCenter = profileHeaderView.fullNameLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
+
+        NSLayoutConstraint.activate([fullNameLabelTopAnchor, fullNameLabelCenter])
+
+    }
 
     override func viewWillLayoutSubviews () {
         super.viewWillLayoutSubviews ()
@@ -31,10 +42,11 @@ class ProfileViewController: UIViewController {
             y: 0,
             width: view.frame.size.width,
             height: view.frame.size.height)
-
-
     }
 
 
+
+
+    
 }
 
