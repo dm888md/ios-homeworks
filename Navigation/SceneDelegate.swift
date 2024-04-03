@@ -28,8 +28,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let profileViewController = ProfileViewController()
   
     let profileNavigationController = UINavigationController(rootViewController: profileViewController)
-        profileNavigationController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 1)
-
+        profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle"), tag: 1)
+        profileViewController.title = "Profile"
 
 // =============== Создали tabBarController и поместили в него 2 контроллера - лента и профиль
         let tabBarController = UITabBarController()
@@ -38,7 +38,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        tabBarController.viewControllers = [feedNavigationController, profileNavigationController]
 
 
-        UITabBar.appearance().backgroundColor = .lightGray
+        UITabBar.appearance().backgroundColor = .white
 
 // Настроили окно при запуске программыы
 

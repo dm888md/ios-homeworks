@@ -31,7 +31,7 @@ class InfoViewController: UIViewController {
         let alert = UIAlertController(title: "Внимание, внимание!", message: "Да или нет", preferredStyle: .alert)
 
         alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { action in
-            print("Нажали ДАч   ")
+            print("Нажали ДА")
         }))
         alert.addAction(UIAlertAction(title: "Нет", style: .cancel, handler: { action in
             print("Нажали НЕТ")
