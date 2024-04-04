@@ -22,8 +22,7 @@ class ProfileHeaderView: UIView {
     let statusLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        //        label.textColor = .gray
-        label.textColor = .red
+        label.textColor = .gray
         label.text = "Waiting for something..."
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -37,9 +36,7 @@ class ProfileHeaderView: UIView {
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-//        button.frame = CGRect(x: 0, y: 0, width: 300, height: 50)
-
-        button.frame = CGRect(x: 40, y: 440, width: 222, height: 50)
+        button.frame = CGRect(x: 0, y: 0, width: 10, height: 50)
 
         button.layer.shadowOffset.width = 3
         button.layer.shadowOffset.height = 4
@@ -59,10 +56,8 @@ class ProfileHeaderView: UIView {
     let myFoto: UIImageView = {
         let foto = UIImageView ()
         foto.image = UIImage(named: "profileImage")
-        foto.frame = CGRect(x: 16, y: 50+16, width: 140, height: 140)
-//        foto.frame = CGPoint(x: 100, y: 100)
-
-        foto.layer.cornerRadius = 70
+        foto.frame = CGRect(x: 16, y: 16, width: 120, height: 120)
+        foto.layer.cornerRadius = 60
         foto.clipsToBounds = true
         foto.layer.borderColor = UIColor.white.cgColor
         foto.layer.borderWidth = 3
