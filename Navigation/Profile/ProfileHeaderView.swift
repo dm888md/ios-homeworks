@@ -8,7 +8,6 @@
 import UIKit
 class ProfileHeaderView: UIView {
 
-
     let fullNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -23,13 +22,14 @@ class ProfileHeaderView: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .gray
+        label.textColor = .red
         label.text = "Waiting for something..."
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
-    let myButton: UIButton = {
+  lazy  var myButton: UIButton = {
         let button = UIButton ()
         button.backgroundColor = .blue
         button.layer.cornerRadius = 4
@@ -37,26 +37,23 @@ class ProfileHeaderView: UIView {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
         button.frame = CGRect(x: 0, y: 0, width: 10, height: 50)
-
         button.layer.shadowOffset.width = 3
         button.layer.shadowOffset.height = 4
         button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
-
         button.addTarget(self, action: #selector(mybuttonAction), for: .touchUpInside)
-
         return button
     }()
-  
+
     @objc func mybuttonAction(sender: UIButton) {
-        print(statusLabel.text)
+        print(statusLabel.text ?? "No text")
     }
 
     let myFoto: UIImageView = {
         let foto = UIImageView ()
         foto.image = UIImage(named: "profileImage")
-        foto.frame = CGRect(x: 16, y: 16, width: 120, height: 120)
+        foto.frame = CGRect(x: 16, y: 160, width: 120, height: 120)
         foto.layer.cornerRadius = 60
         foto.clipsToBounds = true
         foto.layer.borderColor = UIColor.white.cgColor
@@ -66,5 +63,69 @@ class ProfileHeaderView: UIView {
         return foto
     }()
 
-}
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.addSubview(myFoto)
+        self.addSubview(myButton)
+        self.addSubview(fullNameLabel)
+        self.addSubview(statusLabel)
 
+        self.myFoto.frame = CGRect(
+            x: 16,
+            y: 100 + 16, // не получается задать коордиты от safeAreaLayoutGuide
+            width: self.myFoto.frame.width,
+            height: self.myFoto.frame.height
+        )
+
+        self.myButton.frame = CGRect(
+            x: 16,
+            y: myFoto.frame.maxY + 16,
+            width: 360,
+            height: myButton.frame.height
+        )
+
+        let statusLabelBottonAnchor = NSLayoutConstraint(
+            item: statusLabel,
+            attribute: .bottom,
+            relatedBy: .equal,
+            toItem: myButton,
+            attribute: .top,
+            multiplier: 1, constant: -16)
+
+        let statusLabelCenterAnchor = NSLayoutConstraint(
+            item: statusLabel,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: myButton,
+//            toItem: frame,
+            attribute: .centerX,
+            multiplier: 1, constant: 0)
+
+        NSLayoutConstraint.activate([statusLabelBottonAnchor, statusLabelCenterAnchor])
+
+
+    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+}
+        //
+
+//        let fullNameLabelTopAnchor = NSLayoutConstraint(
+//            item: fullNameLabel,
+//            attribute: .top,
+//            relatedBy: .equal,
+//            toItem: myFoto,
+//            attribute: .bottom,
+//            multiplier: 1,
+//            constant: 50)
+//
+//        let fullNameLabelCenter = NSLayoutConstraint(
+//            item: fullNameLabel,
+//            attribute: .centerX,
+//            relatedBy: .equal,
+//            toItem: ProfileHeaderView().frame,
+//            attribute: .centerX,
+//            multiplier: 1,
+//            constant: 0)
