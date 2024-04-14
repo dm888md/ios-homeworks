@@ -21,7 +21,7 @@ class ProfileHeaderView: UIView {
     let statusLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .gray
+//        label.textColor = .gray
         label.textColor = .red
         label.text = "Waiting for something..."
         label.numberOfLines = 0
@@ -29,7 +29,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
 
-  lazy  var myButton: UIButton = {
+    lazy  var myButton: UIButton = {
         let button = UIButton ()
         button.backgroundColor = .blue
         button.layer.cornerRadius = 4
@@ -43,6 +43,7 @@ class ProfileHeaderView: UIView {
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
         button.addTarget(self, action: #selector(mybuttonAction), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = true
         return button
     }()
 
@@ -59,22 +60,39 @@ class ProfileHeaderView: UIView {
         foto.layer.borderColor = UIColor.white.cgColor
         foto.layer.borderWidth = 3
         foto.translatesAutoresizingMaskIntoConstraints = true
-
         return foto
+    }()
+
+    let statusTextField: UITextField = {
+        let statusText = UITextField ()
+        statusText.frame = CGRect(x: 75, y: 75, width: 200, height: 100)
+        statusText.text = "Здесь расположен текст статуса"
+        statusText.font = UIFont.boldSystemFont(ofSize: 20)
+        statusText.textColor = .blue
+        statusText.translatesAutoresizingMaskIntoConstraints = false
+        return statusText
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+
+        self.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleTopMargin]
+        
+        self.addSubview(fullNameLabel)
         self.addSubview(myFoto)
         self.addSubview(myButton)
-        self.addSubview(fullNameLabel)
         self.addSubview(statusLabel)
+        self.addSubview(statusTextField)
+
+        let fullNameLabelTopAnchor = fullNameLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16)
+
+        let fullNameLabelCenterAnchor = fullNameLabel.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor, constant: 0)
 
         self.myFoto.frame = CGRect(
             x: safeAreaLayoutGuide.layoutFrame.minX + 16,
             y: safeAreaLayoutGuide.layoutFrame.minY + 16,
-            width: self.myFoto.frame.width,
-            height: self.myFoto.frame.height
+            width: myFoto.frame.width,
+            height: myFoto.frame.height
         )
 
         self.myButton.frame = CGRect(
@@ -82,45 +100,30 @@ class ProfileHeaderView: UIView {
             y: myFoto.frame.maxY + 16,
             width: 360,
             height: 50
-        )
+            )
 
-        let statusLabelBottonAnchor = NSLayoutConstraint(
-            item: statusLabel,
-            attribute: .bottom,
-            relatedBy: .equal,
-            toItem: myButton,
-            attribute: .top,
-            multiplier: 1, constant: -16)
+        let statusLabelBottonAnchor = statusLabel.bottomAnchor.constraint(equalTo: myButton.topAnchor, constant: -16)
 
-        let statusLabelCenterAnchor = NSLayoutConstraint(
-            item: statusLabel,
-            attribute: .centerX,
-            relatedBy: .lessThanOrEqual,
-            toItem: myButton,
-            attribute: .centerX,
-            multiplier: 1, constant: 0)
+        let statusLabelCenterAnchor = statusLabel.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor)
 
-        let fullNameLabelBottonAnchor = NSLayoutConstraint(
-            item: fullNameLabel,
-            attribute: .bottom,
-            relatedBy: .equal,
-            toItem: safeAreaLayoutGuide,
-            attribute: .top,
-            multiplier: 1, constant: 16)
+        let statusTextFieldTopAnchor = statusTextField.topAnchor.constraint(equalTo: myButton.bottomAnchor, constant: 50)
 
-        let fullNameLabelCenterAnchor = NSLayoutConstraint(
-            item: fullNameLabel,
-            attribute: .centerX,
-            relatedBy: .equal,
-            toItem: safeAreaLayoutGuide,
-            attribute: .centerX,
-            multiplier: 1, constant: 0)
+        let statusTextFieldLeftAnchor = statusTextField.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16)
 
-        NSLayoutConstraint.activate([statusLabelBottonAnchor, statusLabelCenterAnchor, fullNameLabelBottonAnchor, fullNameLabelCenterAnchor])
-
+        let statusTextFieldRightAnchor = statusTextField.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16)
+        
+        NSLayoutConstraint.activate([
+            fullNameLabelTopAnchor,
+            fullNameLabelCenterAnchor,
+            statusLabelBottonAnchor,
+            statusLabelCenterAnchor,
+            statusTextFieldTopAnchor,
+            statusTextFieldLeftAnchor,
+            statusTextFieldRightAnchor
+        ])
     }
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
+        required init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+        }
 
 }
