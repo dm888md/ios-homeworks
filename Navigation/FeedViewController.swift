@@ -14,6 +14,7 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
+<<<<<<< HEAD
 
 /*               lazy var button: UIButton = {
             let button = UIButton ()
@@ -30,6 +31,8 @@ class FeedViewController: UIViewController {
 
 */
 
+=======
+>>>>>>> feature/iosui-2
 
         let button = UIButton ()
         button.backgroundColor = .blue
@@ -39,15 +42,6 @@ class FeedViewController: UIViewController {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         button.frame = CGRect(x: 50, y: 200, width: 300, height: 50)
-
-
-
-        //        func setupButton () {
-        //            button.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -100).isActive = true
-        //             button.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
-        //             button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        //             button.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        //        }
 
         view.addSubview(button)
     }

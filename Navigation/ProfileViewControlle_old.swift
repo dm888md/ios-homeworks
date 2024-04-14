@@ -7,6 +7,7 @@
 
 import UIKit
 
+<<<<<<< HEAD:Navigation/ProfileViewController.swift
 //class ProfileViewController: UIViewController {
 //
 //    override func viewDidLoad() {
@@ -14,3 +15,12 @@ import UIKit
 //        view.backgroundColor = .systemBackground
 //    }
 //}
+=======
+class ProfileViewController_old: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+    }
+}
+>>>>>>> feature/iosui-2:Navigation/ProfileViewControlle_old.swift

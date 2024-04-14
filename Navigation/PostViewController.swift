@@ -25,15 +25,6 @@ class PostViewController: UIViewController {
 
         navigationItem.rightBarButtonItem = barButton
 
-
-
-
-
-        //        func setupView() {
-        //            self.view.backgroundColor = .lightGray
-        //            self.navigationItem.title = "Мой пост"
-//        barButton //        }
-
     }
     @objc func barButtonAction(sender: UIBarButtonItem) {
         let infoViewController = InfoViewController()

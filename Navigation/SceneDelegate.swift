@@ -23,14 +23,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let feedNavigationController = UINavigationController(rootViewController: feedViewController)
         feedNavigationController.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "doc.richtext"), tag: 0)
 
+<<<<<<< HEAD
 //        feedViewController.title = "Лента"
 //        feedViewController.view.backgroundColor = .systemYellow
 
+=======
+>>>>>>> feature/iosui-2
 // =============== Создали профиль пользователя
 
     let profileViewController = ProfileViewController()
   
     let profileNavigationController = UINavigationController(rootViewController: profileViewController)
+<<<<<<< HEAD
         profileNavigationController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 1)
 
 //        profileNavigationController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(contentsOfFile: profileImage), tag: 1)
@@ -38,11 +42,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 //        profileViewController.title = "Профиль"
 //        profileViewController.view.backgroundColor = .systemOrange
+=======
+        profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle"), tag: 1)
+        profileViewController.title = "Profile"
+>>>>>>> feature/iosui-2
 
 // =============== Создали tabBarController и поместили в него 2 контроллера - лента и профиль
         let tabBarController = UITabBarController()
 
 //Это правильный код!
+<<<<<<< HEAD
 //        let controllers = [feedViewController, profileViewController]
 //        tabBarController.viewControllers = controllers.map {
 //                UINavigationController(rootViewController: $0)
@@ -54,7 +63,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UITabBar.appearance().backgroundColor = .lightGray
 //        UITabBar.appearance().tintColor = .black
 //        UITabBar.appearance().unselectedItemTintColor = .black
+=======
+       tabBarController.viewControllers = [feedNavigationController, profileNavigationController]
 
+>>>>>>> feature/iosui-2
+
+        UITabBar.appearance().backgroundColor = .white
 
 // Настроили окно при запуске программыы
 
