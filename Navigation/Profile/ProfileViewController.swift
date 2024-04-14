@@ -13,15 +13,13 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-//            .lightGray
+        view.backgroundColor = .lightGray
         profileHeaderView = ProfileHeaderView ()
         view.addSubview(profileHeaderView)
-
-        func viewWillLayoutSubviews () {
-//            profileHeaderView.frame = view.safeAreaLayoutGuide.layoutFrame
+    }
+    override func viewWillLayoutSubviews () {
             profileHeaderView.frame = view.safeAreaLayoutGuide.layoutFrame
             super.viewWillLayoutSubviews ()
         }
-    }
+    
 }

@@ -71,17 +71,17 @@ class ProfileHeaderView: UIView {
         self.addSubview(statusLabel)
 
         self.myFoto.frame = CGRect(
-            x: 16,
-            y: 100 + 16, // не получается задать коордиты от safeAreaLayoutGuide
+            x: safeAreaLayoutGuide.layoutFrame.minX + 16,
+            y: safeAreaLayoutGuide.layoutFrame.minY + 16,
             width: self.myFoto.frame.width,
             height: self.myFoto.frame.height
         )
 
         self.myButton.frame = CGRect(
-            x: 16,
+            x: safeAreaLayoutGuide.layoutFrame.minX + 16,
             y: myFoto.frame.maxY + 16,
             width: 360,
-            height: myButton.frame.height
+            height: 50
         )
 
         let statusLabelBottonAnchor = NSLayoutConstraint(
@@ -95,14 +95,28 @@ class ProfileHeaderView: UIView {
         let statusLabelCenterAnchor = NSLayoutConstraint(
             item: statusLabel,
             attribute: .centerX,
-            relatedBy: .equal,
+            relatedBy: .lessThanOrEqual,
             toItem: myButton,
-//            toItem: frame,
             attribute: .centerX,
             multiplier: 1, constant: 0)
 
-        NSLayoutConstraint.activate([statusLabelBottonAnchor, statusLabelCenterAnchor])
+        let fullNameLabelBottonAnchor = NSLayoutConstraint(
+            item: fullNameLabel,
+            attribute: .bottom,
+            relatedBy: .equal,
+            toItem: safeAreaLayoutGuide,
+            attribute: .top,
+            multiplier: 1, constant: 16)
 
+        let fullNameLabelCenterAnchor = NSLayoutConstraint(
+            item: fullNameLabel,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: safeAreaLayoutGuide,
+            attribute: .centerX,
+            multiplier: 1, constant: 0)
+
+        NSLayoutConstraint.activate([statusLabelBottonAnchor, statusLabelCenterAnchor, fullNameLabelBottonAnchor, fullNameLabelCenterAnchor])
 
     }
     required init?(coder aDecoder: NSCoder) {
@@ -110,22 +124,3 @@ class ProfileHeaderView: UIView {
     }
 
 }
-        //
-
-//        let fullNameLabelTopAnchor = NSLayoutConstraint(
-//            item: fullNameLabel,
-//            attribute: .top,
-//            relatedBy: .equal,
-//            toItem: myFoto,
-//            attribute: .bottom,
-//            multiplier: 1,
-//            constant: 50)
-//
-//        let fullNameLabelCenter = NSLayoutConstraint(
-//            item: fullNameLabel,
-//            attribute: .centerX,
-//            relatedBy: .equal,
-//            toItem: ProfileHeaderView().frame,
-//            attribute: .centerX,
-//            multiplier: 1,
-//            constant: 0)
