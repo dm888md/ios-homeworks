@@ -21,7 +21,7 @@ class ProfileHeaderView: UIView {
     let statusLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-//        label.textColor = .gray
+        //        label.textColor = .gray
         label.textColor = .red
         label.text = "Waiting for something..."
         label.numberOfLines = 0
@@ -51,15 +51,33 @@ class ProfileHeaderView: UIView {
         print(statusLabel.text ?? "No text")
     }
 
+    lazy  var myButton2: UIButton = {
+        let button = UIButton ()
+        button.backgroundColor = .yellow
+        button.layer.cornerRadius = 4
+        button.setTitle("Кнопка 2", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        button.frame = CGRect(x: 0, y: 0, width: 10, height: 50)
+        button.layer.shadowOffset.width = 3
+        button.layer.shadowOffset.height = 4
+        button.layer.shadowRadius = 4
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.7
+        //        button.addTarget(self, action: #selector(mybuttonAction), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = true
+        return button
+    }()
+
     let myFoto: UIImageView = {
         let foto = UIImageView ()
         foto.image = UIImage(named: "profileImage")
-        foto.frame = CGRect(x: 16, y: 160, width: 120, height: 120)
+        foto.frame = CGRect(x: 0, y: 0, width: 120, height: 120)
         foto.layer.cornerRadius = 60
         foto.clipsToBounds = true
         foto.layer.borderColor = UIColor.white.cgColor
         foto.layer.borderWidth = 3
-        foto.translatesAutoresizingMaskIntoConstraints = true
+        foto.translatesAutoresizingMaskIntoConstraints = false
         return foto
     }()
 
@@ -75,55 +93,58 @@ class ProfileHeaderView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        myAddViewSetyp ()
+        myConstrainSetup ()
+        myFrameSetup()
+    }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 
-        self.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleTopMargin]
-        
+    func myAddViewSetyp () {
         self.addSubview(fullNameLabel)
         self.addSubview(myFoto)
         self.addSubview(myButton)
         self.addSubview(statusLabel)
         self.addSubview(statusTextField)
+        self.addSubview(myButton2)
+    }
 
-        let fullNameLabelTopAnchor = fullNameLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16)
 
-        let fullNameLabelCenterAnchor = fullNameLabel.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor, constant: 0)
+    func myConstrainSetup () {
 
-        self.myFoto.frame = CGRect(
+        translatesAutoresizingMaskIntoConstraints = false
+
+        autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleTopMargin, .flexibleBottomMargin]
+
+        NSLayoutConstraint.activate([
+            fullNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
+            fullNameLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            statusLabel.bottomAnchor.constraint(equalTo: myButton.topAnchor, constant: -34),
+            statusLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+            statusTextField.topAnchor.constraint(equalTo: myButton.bottomAnchor, constant: 26),
+            statusTextField.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
+        ])
+    }
+
+    func myFrameSetup () {
+        myFoto.frame = CGRect(
             x: safeAreaLayoutGuide.layoutFrame.minX + 16,
             y: safeAreaLayoutGuide.layoutFrame.minY + 16,
             width: myFoto.frame.width,
             height: myFoto.frame.height
         )
-
-        self.myButton.frame = CGRect(
+        myButton.frame = CGRect(
             x: safeAreaLayoutGuide.layoutFrame.minX + 16,
             y: myFoto.frame.maxY + 16,
             width: 360,
             height: 50
-            )
-
-        let statusLabelBottonAnchor = statusLabel.bottomAnchor.constraint(equalTo: myButton.topAnchor, constant: -16)
-
-        let statusLabelCenterAnchor = statusLabel.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor)
-
-        let statusTextFieldTopAnchor = statusTextField.topAnchor.constraint(equalTo: myButton.bottomAnchor, constant: 50)
-
-        let statusTextFieldLeftAnchor = statusTextField.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16)
-
-        let statusTextFieldRightAnchor = statusTextField.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16)
-        
-        NSLayoutConstraint.activate([
-            fullNameLabelTopAnchor,
-            fullNameLabelCenterAnchor,
-            statusLabelBottonAnchor,
-            statusLabelCenterAnchor,
-            statusTextFieldTopAnchor,
-            statusTextFieldLeftAnchor,
-            statusTextFieldRightAnchor
-        ])
+        )
+        myButton2.frame = CGRect(
+            x: safeAreaLayoutGuide.layoutFrame.minX + 16,
+            y: statusTextField.frame.maxY + 50,
+            width: 360,
+            height: 50
+        )
     }
-        required init?(coder aDecoder: NSCoder) {
-            super.init(coder: aDecoder)
-        }
-
 }
