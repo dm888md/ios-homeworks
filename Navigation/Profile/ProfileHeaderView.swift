@@ -43,7 +43,7 @@ class ProfileHeaderView: UIView {
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
         button.addTarget(self, action: #selector(mybuttonAction), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = true
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -52,28 +52,28 @@ class ProfileHeaderView: UIView {
     }
 
     lazy  var myButton2: UIButton = {
-        let button = UIButton ()
-        button.backgroundColor = .yellow
-        button.layer.cornerRadius = 4
-        button.setTitle("Кнопка 2", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-        button.frame = CGRect(x: 0, y: 0, width: 10, height: 50)
-        button.layer.shadowOffset.width = 3
-        button.layer.shadowOffset.height = 4
-        button.layer.shadowRadius = 4
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.7
+        let button2 = UIButton ()
+        button2.backgroundColor = .yellow
+        button2.layer.cornerRadius = 4
+        button2.setTitle("Кнопка 2", for: .normal)
+        button2.setTitleColor(.black, for: .normal)
+        button2.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        button2.frame = CGRect(x: 0, y: 0, width: 10, height: 50)
+        button2.layer.shadowOffset.width = 3
+        button2.layer.shadowOffset.height = 4
+        button2.layer.shadowRadius = 4
+        button2.layer.shadowColor = UIColor.black.cgColor
+        button2.layer.shadowOpacity = 0.7
         //        button.addTarget(self, action: #selector(mybuttonAction), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = true
-        return button
+        button2.translatesAutoresizingMaskIntoConstraints = false
+        return button2
     }()
 
     let myFoto: UIImageView = {
         let foto = UIImageView ()
-        foto.image = UIImage(named: "profileImage")
-        foto.frame = CGRect(x: 0, y: 0, width: 120, height: 120)
-        foto.layer.cornerRadius = 60
+        foto.image = UIImage(named: "profileimage")
+        foto.frame = CGRect(x: 16, y: 16, width: 90, height: 90)
+        foto.layer.cornerRadius = 50
         foto.clipsToBounds = true
         foto.layer.borderColor = UIColor.white.cgColor
         foto.layer.borderWidth = 3
@@ -95,7 +95,6 @@ class ProfileHeaderView: UIView {
         super.init(frame: frame)
         myAddViewSetyp ()
         myConstrainSetup ()
-        myFrameSetup()
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -120,31 +119,27 @@ class ProfileHeaderView: UIView {
         NSLayoutConstraint.activate([
             fullNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
             fullNameLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+
             statusLabel.bottomAnchor.constraint(equalTo: myButton.topAnchor, constant: -34),
             statusLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
-            statusTextField.topAnchor.constraint(equalTo: myButton.bottomAnchor, constant: 26),
-            statusTextField.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor)
-        ])
-    }
 
-    func myFrameSetup () {
-        myFoto.frame = CGRect(
-            x: safeAreaLayoutGuide.layoutFrame.minX + 16,
-            y: safeAreaLayoutGuide.layoutFrame.minY + 16,
-            width: myFoto.frame.width,
-            height: myFoto.frame.height
-        )
-        myButton.frame = CGRect(
-            x: safeAreaLayoutGuide.layoutFrame.minX + 16,
-            y: myFoto.frame.maxY + 16,
-            width: 360,
-            height: 50
-        )
-        myButton2.frame = CGRect(
-            x: safeAreaLayoutGuide.layoutFrame.minX + 16,
-            y: statusTextField.frame.maxY + 50,
-            width: 360,
-            height: 50
-        )
+            statusTextField.topAnchor.constraint(equalTo: myButton.bottomAnchor, constant: 50),
+            statusTextField.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+
+            myFoto.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor,constant: 16),
+            myFoto.rightAnchor.constraint(equalTo: myFoto.leftAnchor, constant: 100),
+            myFoto.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            myFoto.bottomAnchor.constraint(equalTo: myFoto.topAnchor, constant: 100),
+
+            myButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor,constant: 16),
+            myButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
+            myButton.topAnchor.constraint(equalTo: myFoto.bottomAnchor, constant: 16),
+            myButton.bottomAnchor.constraint(equalTo: myButton.topAnchor, constant: 50),
+
+            myButton2.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor,constant: 16),
+            myButton2.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
+            myButton2.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 50),
+            myButton2.bottomAnchor.constraint(equalTo: myButton2.topAnchor, constant: 50)
+        ])
     }
 }
