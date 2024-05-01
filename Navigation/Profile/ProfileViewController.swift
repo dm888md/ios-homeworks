@@ -15,7 +15,7 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .lightGray
 
         profileHeaderView = ProfileHeaderView ()
-        profileHeaderView.backgroundColor = .yellow
+//        profileHeaderView.backgroundColor = .yellow
 
         view.addSubview(profileHeaderView)
         profileHeaderView.addSubview(myButton2)

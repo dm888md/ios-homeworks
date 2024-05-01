@@ -62,7 +62,8 @@ class ProfileHeaderView: UIView {
 
     let statusTextField: UITextField = {
         let statusText = UITextField ()
-        statusText.text = "Listening for music"
+//        statusText.text = "Listening for music"
+        statusText.placeholder = "Listening for music"
         statusText.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         statusText.textColor = .black
         statusText.layer.borderColor = UIColor.black.cgColor
