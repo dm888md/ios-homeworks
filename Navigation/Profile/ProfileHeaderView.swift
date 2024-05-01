@@ -21,7 +21,6 @@ class ProfileHeaderView: UIView {
     let statusLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .gray
         label.textColor = .red
         label.text = "Waiting for something..."
         label.numberOfLines = 0
@@ -29,20 +28,20 @@ class ProfileHeaderView: UIView {
         return label
     }()
 
-  lazy  var myButton: UIButton = {
+    lazy  var myButton: UIButton = {
         let button = UIButton ()
         button.backgroundColor = .blue
         button.layer.cornerRadius = 4
         button.setTitle("Show status", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)
-        button.frame = CGRect(x: 0, y: 0, width: 10, height: 50)
         button.layer.shadowOffset.width = 3
         button.layer.shadowOffset.height = 4
         button.layer.shadowRadius = 4
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.7
         button.addTarget(self, action: #selector(mybuttonAction), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -52,75 +51,76 @@ class ProfileHeaderView: UIView {
 
     let myFoto: UIImageView = {
         let foto = UIImageView ()
-        foto.image = UIImage(named: "profileImage")
-        foto.frame = CGRect(x: 16, y: 160, width: 120, height: 120)
-        foto.layer.cornerRadius = 60
+        foto.image = UIImage(named: "profileimage")
+        foto.layer.cornerRadius = 50
         foto.clipsToBounds = true
         foto.layer.borderColor = UIColor.white.cgColor
         foto.layer.borderWidth = 3
-        foto.translatesAutoresizingMaskIntoConstraints = true
-
+        foto.translatesAutoresizingMaskIntoConstraints = false
         return foto
+    }()
+
+    let statusTextField: UITextField = {
+        let statusText = UITextField ()
+//        statusText.text = "Listening for music"
+        statusText.placeholder = "Listening for music"
+        statusText.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        statusText.textColor = .black
+        statusText.layer.borderColor = UIColor.black.cgColor
+        statusText.layer.borderWidth = 1
+        statusText.layer.cornerRadius = 12
+        statusText.layer.backgroundColor = UIColor.white.cgColor
+
+        statusText.translatesAutoresizingMaskIntoConstraints = false
+        return statusText
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.addSubview(myFoto)
-        self.addSubview(myButton)
-        self.addSubview(fullNameLabel)
-        self.addSubview(statusLabel)
-
-        self.myFoto.frame = CGRect(
-            x: safeAreaLayoutGuide.layoutFrame.minX + 16,
-            y: safeAreaLayoutGuide.layoutFrame.minY + 16,
-            width: self.myFoto.frame.width,
-            height: self.myFoto.frame.height
-        )
-
-        self.myButton.frame = CGRect(
-            x: safeAreaLayoutGuide.layoutFrame.minX + 16,
-            y: myFoto.frame.maxY + 16,
-            width: 360,
-            height: 50
-        )
-
-        let statusLabelBottonAnchor = NSLayoutConstraint(
-            item: statusLabel,
-            attribute: .bottom,
-            relatedBy: .equal,
-            toItem: myButton,
-            attribute: .top,
-            multiplier: 1, constant: -16)
-
-        let statusLabelCenterAnchor = NSLayoutConstraint(
-            item: statusLabel,
-            attribute: .centerX,
-            relatedBy: .lessThanOrEqual,
-            toItem: myButton,
-            attribute: .centerX,
-            multiplier: 1, constant: 0)
-
-        let fullNameLabelBottonAnchor = NSLayoutConstraint(
-            item: fullNameLabel,
-            attribute: .bottom,
-            relatedBy: .equal,
-            toItem: safeAreaLayoutGuide,
-            attribute: .top,
-            multiplier: 1, constant: 16)
-
-        let fullNameLabelCenterAnchor = NSLayoutConstraint(
-            item: fullNameLabel,
-            attribute: .centerX,
-            relatedBy: .equal,
-            toItem: safeAreaLayoutGuide,
-            attribute: .centerX,
-            multiplier: 1, constant: 0)
-
-        NSLayoutConstraint.activate([statusLabelBottonAnchor, statusLabelCenterAnchor, fullNameLabelBottonAnchor, fullNameLabelCenterAnchor])
-
+        myAddViewSetyp ()
+        myConstrainSetup ()
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
+    func myAddViewSetyp () {
+        self.addSubview(fullNameLabel)
+        self.addSubview(myFoto)
+        self.addSubview(myButton)
+        self.addSubview(statusLabel)
+        self.addSubview(statusTextField)
+    }
+
+
+    func myConstrainSetup () {
+
+        translatesAutoresizingMaskIntoConstraints = false
+
+        autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleTopMargin, .flexibleBottomMargin]
+
+        NSLayoutConstraint.activate([
+            fullNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
+            fullNameLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+
+            statusLabel.bottomAnchor.constraint(equalTo: myButton.topAnchor, constant: -44),
+            statusLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+
+            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 2),
+            statusTextField.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: 40),
+            statusTextField.leftAnchor.constraint(equalTo: statusLabel.leftAnchor, constant: 0),
+            statusTextField.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
+
+            myFoto.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor,constant: 16),
+            myFoto.rightAnchor.constraint(equalTo: myFoto.leftAnchor, constant: 100),
+            myFoto.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            myFoto.bottomAnchor.constraint(equalTo: myFoto.topAnchor, constant: 100),
+
+            myButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor,constant: 16),
+            myButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
+            myButton.topAnchor.constraint(equalTo: myFoto.bottomAnchor, constant: 16),
+            myButton.bottomAnchor.constraint(equalTo: myButton.topAnchor, constant: 50),
+
+        ])
+    }
 }
