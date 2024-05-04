@@ -16,31 +16,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window = UIWindow(windowScene: scene)
 
-// =============== Создали ленту пользователя
+        // =============== Создали ленту пользователя
 
-    let feedViewController = FeedViewController()
- 
-    let feedNavigationController = UINavigationController(rootViewController: feedViewController)
+        let feedViewController = FeedViewController()
+        let feedNavigationController = UINavigationController(rootViewController: feedViewController)
         feedNavigationController.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "doc.richtext"), tag: 0)
 
-// =============== Создали профиль пользователя
+        // =============== Создали профиль пользователя
 
-    let profileViewController = ProfileViewController()
-  
-    let profileNavigationController = UINavigationController(rootViewController: profileViewController)
-        profileNavigationController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.circle"), tag: 1)
-        profileViewController.title = "Profile"
+        let logInViewController = LogInViewController()
 
-// =============== Создали tabBarController и поместили в него 2 контроллера - лента и профиль
+//        let loginNavigationController = UINavigationController(rootViewController: logInViewController)
+        let loginNavigationController = UINavigationController(rootViewController: logInViewController)
+        loginNavigationController.tabBarItem = UITabBarItem(title: "Login", image: UIImage(systemName: "person.circle"), tag: 1)
+        logInViewController.title = "Login"
+
+        // =============== Создали tabBarController и поместили в него 2 контроллера - лента и профиль
         let tabBarController = UITabBarController()
 
-//Это правильный код!
-       tabBarController.viewControllers = [feedNavigationController, profileNavigationController]
-
+      //Это правильный код!
+        tabBarController.viewControllers = [feedNavigationController, loginNavigationController]
 
         UITabBar.appearance().backgroundColor = .white
 
-// Настроили окно при запуске программыы
+        // Настроили окно при запуске программыы
 
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
