@@ -7,6 +7,8 @@
 
 import UIKit
 
+// Настройка экрана Login
+
 class LogInViewController: UIViewController {
     override func viewDidLoad() {
         viewSetup()
@@ -17,7 +19,7 @@ class LogInViewController: UIViewController {
     }
     
     func viewSetup () {
-        view.backgroundColor = .colorSet
+//        view.backgroundColor = .colorSet
         view.backgroundColor = .white
     }
     
@@ -193,11 +195,16 @@ class LogInViewController: UIViewController {
         return button
     }()
     
+// было так удалили из за задания №3
+//    @objc func logInButtonAction(sender: UIButton) {
+//        let profileViewController = ProfileViewController()
+//        self.navigationController?.pushViewController(profileViewController, animated: true)
+//    }
     @objc func logInButtonAction(sender: UIButton) {
         let profileViewController = ProfileViewController()
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
-    
+
     
     let myView: UIView = {
         var mView = UIView ()
@@ -231,15 +238,4 @@ extension UIImage {
         }
     }
 }
-
-//
-//extension LogInViewController: UITextFieldDelegate {
-//
-//    func textFieldShouldReturn(
-//         nameText: UITextField
-//    ) -> Bool {
-//        nameText.resignFirstResponder()
-//        return true
-//    }
-//}
 

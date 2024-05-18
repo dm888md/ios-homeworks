@@ -26,7 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let logInViewController = LogInViewController()
 
-//        let loginNavigationController = UINavigationController(rootViewController: logInViewController)
         let loginNavigationController = UINavigationController(rootViewController: logInViewController)
         loginNavigationController.tabBarItem = UITabBarItem(title: "Login", image: UIImage(systemName: "person.circle"), tag: 1)
         logInViewController.title = "Login"
