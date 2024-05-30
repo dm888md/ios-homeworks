@@ -120,7 +120,7 @@ class ProfileHeaderView: UIView {
 
         NSLayoutConstraint.activate([
 
-            fullNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
+            fullNameLabel.topAnchor.constraint(equalTo: content.topAnchor, constant: 27),
             fullNameLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
 
             statusLabel.bottomAnchor.constraint(equalTo: myButton.topAnchor, constant: -44),
@@ -146,6 +146,34 @@ class ProfileHeaderView: UIView {
             //            tableView.heightAnchor.constraint(equalToConstant: 100 ),
             tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+
+
+//            fullNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
+//            fullNameLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+//
+//            statusLabel.bottomAnchor.constraint(equalTo: myButton.topAnchor, constant: -44),
+//            statusLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
+//
+//            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 2),
+//            statusTextField.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: 40),
+//            statusTextField.leftAnchor.constraint(equalTo: statusLabel.leftAnchor, constant: 0),
+//            statusTextField.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
+//
+//            myFoto.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor,constant: 16),
+//            myFoto.rightAnchor.constraint(equalTo: myFoto.leftAnchor, constant: 100),
+//            myFoto.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+//            myFoto.bottomAnchor.constraint(equalTo: myFoto.topAnchor, constant: 100),
+//
+//            myButton.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor,constant: 16),
+//            myButton.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -16),
+//            myButton.topAnchor.constraint(equalTo: myFoto.bottomAnchor, constant: 16),
+//            myButton.bottomAnchor.constraint(equalTo: myButton.topAnchor, constant: 50),
+//
+//            tableView.topAnchor.constraint(equalTo: myButton.bottomAnchor, constant: 50),
+//            tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+//            //            tableView.heightAnchor.constraint(equalToConstant: 100 ),
+//            tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+//            tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
         ])
     }
 
