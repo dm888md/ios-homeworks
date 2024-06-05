@@ -19,7 +19,7 @@ class LogInViewController: UIViewController {
     }
     
     func viewSetup () {
-//        view.backgroundColor = .colorSet
+        //        view.backgroundColor = .colorSet
         view.backgroundColor = .white
     }
     
@@ -36,7 +36,7 @@ class LogInViewController: UIViewController {
         super.viewWillDisappear(animated)
         removeKeyboardObservers ()
     }
-
+    
     private func setupKeyboardObservers() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(
@@ -74,7 +74,7 @@ class LogInViewController: UIViewController {
         let scrollView = UIScrollView ()
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
-//        scrollView.backgroundColor = .red
+        //        scrollView.backgroundColor = .red
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     } ()
@@ -82,7 +82,7 @@ class LogInViewController: UIViewController {
     private lazy var contentView: UIView = {
         let contentView = UIView ()
         contentView.translatesAutoresizingMaskIntoConstraints = false
-//        contentView.backgroundColor = .yellow
+        //        contentView.backgroundColor = .yellow
         return contentView
     } ()
     
@@ -195,16 +195,11 @@ class LogInViewController: UIViewController {
         return button
     }()
     
-// было так удалили из за задания №3
-//    @objc func logInButtonAction(sender: UIButton) {
-//        let profileViewController = ProfileViewController()
-//        self.navigationController?.pushViewController(profileViewController, animated: true)
-//    }
     @objc func logInButtonAction(sender: UIButton) {
         let profileViewController = ProfileViewController()
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
-
+    
     
     let myView: UIView = {
         var mView = UIView ()

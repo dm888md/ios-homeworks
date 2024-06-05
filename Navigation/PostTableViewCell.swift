@@ -107,7 +107,6 @@ class PostTableViewCell: UITableViewCell {
             
             myLikes.topAnchor.constraint(equalTo: myDescription.bottomAnchor, constant: 16),
             myLikes.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
-            //            myLikes.heightAnchor.constraint(equalToConstant: 100),
             myLikes.leadingAnchor.constraint(equalTo: leadingAnchor, constant: +16),
             myLikes.trailingAnchor.constraint(equalTo:myDescription.centerXAnchor ),
             

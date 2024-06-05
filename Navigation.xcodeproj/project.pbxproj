@@ -61,8 +61,8 @@
 				685F6DF52BB918770080976F /* ProfileHeaderView.swift */,
 				685F6DF72BB918DB0080976F /* ProfileViewController.swift */,
 				684905E22BE1E72500E8390C /* LogInViewController.swift */,
-				6856505D2BF1EC4400120B9B /* ProfileTableHederView.swift */,
 				68A777292BF6071A0033325F /* Post.swift */,
+				6856505D2BF1EC4400120B9B /* ProfileTableHederView.swift */,
 				687E90CA2BFE3D4200BBF24C /* PostTableViewCell.swift */,
 			);
 			path = Profile;
