@@ -10,13 +10,15 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     fileprivate let data = MyPost.make() // база данных постов
-    var profileHeaderView = ProfileHeaderView ()
+    fileprivate let profileHeaderView = ProfileHeaderView ()
 
     //     Создали экземпляр таблицы
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init(
             frame: .zero,
-            style: .plain
+//            style: .plain
+            style: .grouped
+//            style: .insetGrouped
         )
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -26,19 +28,11 @@ class ProfileViewController: UIViewController {
     private enum CellReuseId: String {
         case base = "BaseTableViewCell_ReuseID"
         case custom = "CustomTableViewCell_ReuseID"
-        case head = "HeaderFooter_ReuiseID"
+        case head = "HeaderTableViewCell_ReuseID"
     }
-
-    //qqqqqqqqqqqq
-    private enum HeaderFooterReuseID: String {
-        case base = "TableSectionFooterHeaderView_ReuseID"
-    }
-
 
     override func viewDidLoad() {
         view.backgroundColor = .systemGray
-//qq        profileHeaderView.backgroundColor = .red
-//qqq        view.addSubview(profileHeaderView)
         view.addSubview(tableView)
         myConstraintSetup ()
         tuneTableView ()
@@ -48,6 +42,7 @@ class ProfileViewController: UIViewController {
     func tuneTableView () {
         ////         автоматический размер ячейки
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.delegate = self
         tableView.dataSource = self
 
@@ -59,27 +54,41 @@ class ProfileViewController: UIViewController {
             PostTableViewCell.self,
             forCellReuseIdentifier: CellReuseId.custom.rawValue
         )
-
-        let hhh = profileHeaderView
-        tableView.tableHeaderView = hhh
-
-
-   }
+    }
 
     func myConstraintSetup () {
         NSLayoutConstraint.activate([
-//            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-//            profileHeaderView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0),
-//            profileHeaderView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 0),
-//            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
 
-
-
-//            tableView.topAnchor.constraint(equalTo: profileHeaderView.bottomAnchor, constant: 0),
             tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+
+
+            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
+            profileHeaderView.widthAnchor.constraint(equalToConstant: view.frame.width),
+
+            profileHeaderView.fullNameLabel.topAnchor.constraint(equalTo: profileHeaderView.topAnchor, constant: 27),
+            profileHeaderView.fullNameLabel.centerXAnchor.constraint(equalTo: profileHeaderView.centerXAnchor),
+
+            profileHeaderView.myFoto.leftAnchor.constraint(equalTo: profileHeaderView.leftAnchor,constant: 16),
+            profileHeaderView.myFoto.rightAnchor.constraint(equalTo: profileHeaderView.myFoto.leftAnchor, constant: 100),
+            profileHeaderView.myFoto.topAnchor.constraint(equalTo: profileHeaderView.topAnchor, constant: 16),
+            profileHeaderView.myFoto.bottomAnchor.constraint(equalTo: profileHeaderView.myFoto.topAnchor, constant: 100),
+
+            profileHeaderView.myButton.leftAnchor.constraint(equalTo: profileHeaderView.leftAnchor,constant: 16),
+            profileHeaderView.myButton.rightAnchor.constraint(equalTo: profileHeaderView.rightAnchor, constant: -16),
+            profileHeaderView.myButton.topAnchor.constraint(equalTo: profileHeaderView.myFoto.bottomAnchor, constant: 16),
+            profileHeaderView.myButton.bottomAnchor.constraint(equalTo: profileHeaderView.myButton.topAnchor, constant: 50),
+
+            profileHeaderView.statusLabel.bottomAnchor.constraint(equalTo: profileHeaderView.myButton.topAnchor, constant: -44),
+            profileHeaderView.statusLabel.centerXAnchor.constraint(equalTo: profileHeaderView.centerXAnchor),
+
+
+            profileHeaderView.statusTextField.topAnchor.constraint(equalTo: profileHeaderView.statusLabel.bottomAnchor, constant: 2),
+            profileHeaderView.statusTextField.bottomAnchor.constraint(equalTo: profileHeaderView.statusTextField.topAnchor, constant: 40),
+            profileHeaderView.statusTextField.leftAnchor.constraint(equalTo: profileHeaderView.statusLabel.leftAnchor, constant: 0),
+            profileHeaderView.statusTextField.rightAnchor.constraint(equalTo: profileHeaderView.rightAnchor, constant: -16),
         ])
     }
 }
@@ -100,6 +109,7 @@ extension ProfileViewController: UITableViewDelegate {
         _ tableView: UITableView,
         heightForHeaderInSection section: Int
     ) -> CGFloat {
+        //    return 150
         UITableView.automaticDimension
     }
 
@@ -111,39 +121,20 @@ extension ProfileViewController: UITableViewDelegate {
         UITableView.automaticDimension
     }
 
-    //qqqqqqqqqqqq
-    //    func tableView(
-    //        _ tableView: UITableView,
-    //        viewForHeaderInSection section: Int
-    //    ) -> UIView? {
-    //        guard let headerView = tableView.dequeueReusableHeaderFooterView(
-    //            withIdentifier: CellReuseId.head.rawValue
-    //        ) as TableSectionFooterHeaderView else {
-    //            fatalError("could not dequeueReusableCell"
-    //            )
-    //        }
-    ////        headerView.update(title: "ffff")
-    //        return headerView
+    func tableView(
+        _ tableView: UITableView,
+        viewForHeaderInSection section: Int
+    ) -> UIView? {
 
+        if tableView.numberOfSections == 1 {
+            _ = tableView.dequeueReusableHeaderFooterView(
+                withIdentifier: CellReuseId.head.rawValue)
+            return profileHeaderView
+        } else {
+            return nil
+        }
 
-    // let headerView = ProfileHeaderView ()
-    //        return headerView
-
-    //    }
-    //
-
-    //    func tableView(
-    //        _ tableView: UITableView,
-    //        viewForHeaderInSection section: Int
-    //    ) -> UIView? {
-    //        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderFooter_ReuiseID.base.rawValue
-    //        ) as TableSectionFooterHeaderView else {
-    //            fatalError("could not dequeueReusableCell")
-    //        }
-    //        headerView.update(title: "ffff")
-    //        return headerView
-    //    }
-    //
+    }
 }
 
 extension ProfileViewController: UITableViewDataSource {
@@ -180,5 +171,4 @@ extension ProfileViewController: UITableViewDataSource {
         cell.configure(with: mypost)
         return cell
     }
-
 }
