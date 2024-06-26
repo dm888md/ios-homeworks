@@ -17,17 +17,23 @@ class LogInViewController: UIViewController {
         setupConContentOfScrollView ()
         super.viewDidLoad()
     }
-    
+
     func viewSetup () {
         //        view.backgroundColor = .colorSet
-        view.backgroundColor = .white
+        //        view.backgroundColor = .white
+
+        #if DEBUG
+            view.backgroundColor = .colorSet
+        #else
+            view.backgroundColor = .white
+        #endif
     }
-    
+
     func addView () {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupKeyboardObservers ()
@@ -36,7 +42,7 @@ class LogInViewController: UIViewController {
         super.viewWillDisappear(animated)
         removeKeyboardObservers ()
     }
-    
+
     private func setupKeyboardObservers() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(
@@ -58,18 +64,18 @@ class LogInViewController: UIViewController {
             self
         )
     }
-    
+
     @objc func willShowKeyboard (_ notification: NSNotification) {
         let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as?NSValue)?.cgRectValue.height
         //        scrollView.contentInset.bottom -= keyboardHeight ?? 0.0
         scrollView.contentInset.top -= keyboardHeight ?? 0.0
         print(keyboardHeight ?? 0)
     }
-    
+
     @objc func willHideKeyboard (_ notification: NSNotification) {
         scrollView.contentInset.bottom = 0.0
     }
-    
+
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView ()
         scrollView.showsVerticalScrollIndicator = true
@@ -78,15 +84,15 @@ class LogInViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     } ()
-    
+
     private lazy var contentView: UIView = {
         let contentView = UIView ()
         contentView.translatesAutoresizingMaskIntoConstraints = false
         //        contentView.backgroundColor = .yellow
         return contentView
     } ()
-    
-    
+
+
     func setupConContentOfScrollView () {
         contentView.addSubview(myLogo)
         contentView.addSubview(myStack)
@@ -94,41 +100,41 @@ class LogInViewController: UIViewController {
         myStack.addSubview(nameTextField)
         myStack.addSubview(myView)
         myStack.addSubview(passTextField)
-        
+
         NSLayoutConstraint.activate([
-            
+
             myLogo.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
             myLogo.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             myLogo.heightAnchor.constraint(equalToConstant: 100),
             myLogo.widthAnchor.constraint(equalToConstant: 100),
-            
+
             myStack.topAnchor.constraint(equalTo: myLogo.bottomAnchor, constant: 120),
             myStack.heightAnchor.constraint(equalToConstant: 100),
             myStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             myStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
+
             nameTextField.topAnchor.constraint(equalTo: myStack.topAnchor, constant: 0),
             nameTextField.heightAnchor.constraint(equalToConstant: 49.5),
             nameTextField.leadingAnchor.constraint(equalTo: myStack.leadingAnchor),
             nameTextField.trailingAnchor.constraint(equalTo: myStack.trailingAnchor),
-            
+
             myView.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 0),
             myView.heightAnchor.constraint(equalToConstant: 0.5),
             myView.leadingAnchor.constraint(equalTo: myStack.leadingAnchor, constant: 16),
             myView.trailingAnchor.constraint(equalTo: myStack.trailingAnchor, constant: -16),
-            
+
             passTextField.topAnchor.constraint(equalTo: myView.bottomAnchor, constant: 0),
             passTextField.heightAnchor.constraint(equalToConstant: 49.5),
             passTextField.leadingAnchor.constraint(equalTo: myStack.leadingAnchor, constant: 16),
             passTextField.trailingAnchor.constraint(equalTo: myStack.trailingAnchor, constant: -16),
-            
+
             logInButton.topAnchor.constraint(equalTo: myStack.bottomAnchor, constant: 16),
             logInButton.heightAnchor.constraint(equalToConstant: 55),
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
         ])
     }
-    
+
     let myLogo: UIImageView = {
         let logo = UIImageView ()
         logo.image = UIImage(named: "logo")
@@ -139,7 +145,7 @@ class LogInViewController: UIViewController {
         logo.translatesAutoresizingMaskIntoConstraints = false
         return logo
     }()
-    
+
     let myStack: UIStackView = {
         let stack = UIStackView ()
         stack.layer.borderWidth = 1
@@ -150,7 +156,7 @@ class LogInViewController: UIViewController {
         stack.layer.backgroundColor = UIColor.systemGray6.cgColor
         return stack
     }()
-    
+
     let nameTextField: UITextField = {
         let nameText = UITextField ()
         nameText.placeholder = "Email or phone"
@@ -164,7 +170,7 @@ class LogInViewController: UIViewController {
         //        nameText.delegate = self
         return nameText
     }()
-    
+
     let passTextField: UITextField = {
         let passText = UITextField ()
         passText.placeholder = "Password"
@@ -178,7 +184,7 @@ class LogInViewController: UIViewController {
         passText.translatesAutoresizingMaskIntoConstraints = false
         return passText
     }()
-    
+
     lazy var logInButton: UIButton = {
         let button = UIButton ()
         //        button.setBackgroundImage(UIImage(named: "buttonColor"), for: .normal)
@@ -194,13 +200,13 @@ class LogInViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     @objc func logInButtonAction(sender: UIButton) {
         let profileViewController = ProfileViewController()
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
-    
-    
+
+
     let myView: UIView = {
         var mView = UIView ()
         mView.layer.borderColor = UIColor.lightGray.cgColor
@@ -208,15 +214,15 @@ class LogInViewController: UIViewController {
         mView.translatesAutoresizingMaskIntoConstraints = false
         return mView
     }()
-    
+
     func myConstrainSetup2 () {
         NSLayoutConstraint.activate([
-            
+
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            
+
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
