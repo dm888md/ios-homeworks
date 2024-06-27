@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import StorageService
+
 
 class PostTableViewCell: UITableViewCell {
     private let myAuthor: UILabel = {

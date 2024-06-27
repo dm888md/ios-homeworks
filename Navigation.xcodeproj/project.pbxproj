@@ -21,7 +21,6 @@
 		68CFE94F2C2BF44200C761AD /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 68CFE94E2C2BF44200C761AD /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		68CFE9522C2BF44200C761AD /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68CFE94C2C2BF44200C761AD /* StorageService.framework */; };
 		68CFE9532C2BF44200C761AD /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 68CFE94C2C2BF44200C761AD /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		68CFE9592C2BF49A00C761AD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFE9582C2BF49A00C761AD /* Post.swift */; };
 		68CFE95A2C2BF49A00C761AD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CFE9582C2BF49A00C761AD /* Post.swift */; };
 		68EE03EE2BAD294400EDD0DF /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EE03ED2BAD294400EDD0DF /* FeedViewController.swift */; };
 		68EE03F02BAD296000EDD0DF /* ProfileViewControlle_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EE03EF2BAD296000EDD0DF /* ProfileViewControlle_old.swift */; };
@@ -267,7 +266,6 @@
 				6856505E2BF1EC4400120B9B /* ProfileTableHederView.swift in Sources */,
 				68EE03F02BAD296000EDD0DF /* ProfileViewControlle_old.swift in Sources */,
 				68CFE9462C2BF3EA00C761AD /* post.swift in Sources */,
-				68CFE9592C2BF49A00C761AD /* Post.swift in Sources */,
 				68EE03EE2BAD294400EDD0DF /* FeedViewController.swift in Sources */,
 				68CCB7DB2BAEDE0E00A45F51 /* InfoViewController.swift in Sources */,
 				687E90CB2BFE3D4200BBF24C /* PostTableViewCell.swift in Sources */,

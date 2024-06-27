@@ -7,18 +7,18 @@
 
 import UIKit
 // 01 Струкрура поста
-struct MyPost {
-    var author: String
-    var description: String
-    var image: String
-    var likes: Int
-    var views: Int
+public struct MyPost {
+    public var author: String
+    public var description: String
+    public var image: String
+    public var likes: Int
+    public var views: Int
 }
 
 
 // 02 Создали массив публикаций из 4 х постов
-extension MyPost {
-    static func make () -> [MyPost] {
+public extension  MyPost {
+     static func make () -> [MyPost] {
         [
             MyPost(author: "Author1", description: "Description1", image: "post1", likes: 100, views: 100),
             MyPost(author: "Author2 Author2 Author2 Author2 Author2 Author2 Author2 ", description: "Description2 Description2 Description2 Description2 Description2 Description2 Description2 Description2 Description2 Description2 Description2 Description2 Description2 Description2 Description2 Description2 Description2 Description2 Description2 Description2 ", image: "post2", likes: 200, views: 200),
